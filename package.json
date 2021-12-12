@@ -55,7 +55,10 @@
     "@loopback/rest": "^11.0.0",
     "@loopback/rest-explorer": "^4.0.0",
     "@loopback/service-proxy": "^4.0.0",
+    "@sendgrid/client": "^7.6.0",
+    "@sendgrid/mail": "^7.6.0",
     "loopback-connector-mongodb": "^6.1.0",
+    "loopback-connector-twilio": "^1.0.0",
     "tslib": "^2.0.0"
   },
   "devDependencies": {

@@ -1,14 +1,9 @@
 import { /* inject, */ BindingScope, injectable} from '@loopback/core';
 import {Client} from "@sendgrid/client";
+import {Contactinfo} from '../models';
 import sgMail = require("@sendgrid/mail");
 
-const msg = {
-  to: 'valeriagomezsanchez@gmail.com', // Change to your recipient
-  from: 'silvanalitman@gmail.com', // Change to your verified sender
-  subject: 'Ethot contact form',
-  text: 'This is our first email',
-  html: '<strong>Please check the next URL</strong>',
-}
+
 
 
 @injectable({scope: BindingScope.TRANSIENT})
@@ -21,7 +16,18 @@ export class SendgridService {
   /*
    * Add service methods here
    */
-  send() {
+  public send(contactInfo: Contactinfo): Contactinfo {
+
+    let msg =
+    {
+      to: 'valeriagomezsanchez@gmail.com', // Change to your recipient
+      from: 'silvanalitman@gmail.com', // Change to your verified sender
+      subject: 'The user identified with email ' + contactInfo.email,
+      text: 'User waiting for an answer',
+      html: contactInfo.fullname + ' send the following text: <br /> ' + contactInfo.comment + '<br /> Please, do not forget to answer to this customer.'
+    };
+
+
     sgMail
       .send(msg)
       .then((response) => {
@@ -30,6 +36,8 @@ export class SendgridService {
       })
       .catch((error) => {
         console.error(error)
-      })
+      });
+
+    return contactInfo;
   }
 }

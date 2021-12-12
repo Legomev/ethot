@@ -286,6 +286,17 @@
   "resolved" "https://registry.npmjs.org/@istanbuljs/schema/-/schema-0.1.3.tgz"
   "version" "0.1.3"
 
+"@loopback/authentication@^8.0.0":
+  "integrity" "sha512-oiDJZRrBYR0STo8Da7lADAPqmHyYOslXxTGQZmI3ckQlglIvtdKB69y3W8xTSrDI5cUrNVXLjQwDqIydchWbrg=="
+  "resolved" "https://registry.npmjs.org/@loopback/authentication/-/authentication-8.0.0.tgz"
+  "version" "8.0.0"
+  dependencies:
+    "@loopback/security" "^0.6.0"
+    "@types/express" "^4.17.13"
+    "@types/lodash" "^4.14.176"
+    "lodash" "^4.17.21"
+    "tslib" "^2.3.1"
+
 "@loopback/boot@^4.0.0":
   "integrity" "sha512-zJUtFx240PdgsWV5gfJ019M5As3Xj3LVZpS/6LTQF8mx5q03YF5imT0BrrdiTtMQc3/w68I0iXjGV3I7n6ptfQ=="
   "resolved" "https://registry.npmjs.org/@loopback/boot/-/boot-4.0.0.tgz"
@@ -485,6 +496,14 @@
     "type-is" "^1.6.18"
     "validator" "^13.6.0"
 
+"@loopback/security@^0.6.0":
+  "integrity" "sha512-yAA9TfHWCTb9w2f8jzXh2P9Z5KeRSqR/zLW9G+NJWRUSU2qbGXcoPnDTcN9XO3BHtv3OfC8oDitkYy8fiXsdiA=="
+  "resolved" "https://registry.npmjs.org/@loopback/security/-/security-0.6.0.tgz"
+  "version" "0.6.0"
+  dependencies:
+    "debug" "^4.3.2"
+    "tslib" "^2.3.1"
+
 "@loopback/service-proxy@^4.0.0":
   "integrity" "sha512-ACmDuOP22hU5T/UY/Q21kOWLwVUn8nCCATYdltTTVM8KpnFh6xjA751F1SWYYHvBqRnFZHM9KGctMnJOUnfoHQ=="
   "resolved" "https://registry.npmjs.org/@loopback/service-proxy/-/service-proxy-4.0.0.tgz"
@@ -666,6 +685,11 @@
   "integrity" "sha512-qcUXuemtEu+E5wZSJHNxUXeCZhAfXKQ41D+duX+VYPde7xyEVZci+/oXKJL13tnRs9lR2pr4fod59GT6/X1/yQ=="
   "resolved" "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.9.tgz"
   "version" "7.0.9"
+
+"@types/lodash@^4.14.176":
+  "integrity" "sha512-0d5Wd09ItQWH1qFbEyQ7oTQ3GZrMfth5JkbN3EvTKLXcHLRDSXeLnlvlOn0wvxVIwK5o2M8JzP/OWz7T3NRsbw=="
+  "resolved" "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.178.tgz"
+  "version" "4.14.178"
 
 "@types/mime@^1":
   "integrity" "sha512-YATxVxgRqNH6nHEIsvg6k2Boc1JHI9ZbH5iWFFv/MTkchz3b1ieGDa5T0a9RznNdI0KhVbdbWSN+KWWrQZRxTw=="
@@ -3158,6 +3182,11 @@
   "version" "1.0.1"
   dependencies:
     "callsites" "^3.0.0"
+
+"parse-bearer-token@^1.0.1":
+  "integrity" "sha512-64FLw+pKZQPnoHqryZ7aGqpIc5ud2Xe1TnxBbK5CmUhJtYjVTKt//BLTP/zYhVs3O5OWsCDdqyoPnYd3SivQOA=="
+  "resolved" "https://registry.npmjs.org/parse-bearer-token/-/parse-bearer-token-1.0.1.tgz"
+  "version" "1.0.1"
 
 "parseurl@~1.3.3":
   "integrity" "sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ=="

@@ -49,6 +49,7 @@
     "!*/__tests__"
   ],
   "dependencies": {
+    "@loopback/authentication": "^8.0.0",
     "@loopback/boot": "^4.0.0",
     "@loopback/core": "^3.0.0",
     "@loopback/repository": "^4.0.0",
@@ -57,8 +58,10 @@
     "@loopback/service-proxy": "^4.0.0",
     "@sendgrid/client": "^7.6.0",
     "@sendgrid/mail": "^7.6.0",
+    "jsonwebtoken": "^8.5.1",
     "loopback-connector-mongodb": "^6.1.0",
     "loopback-connector-twilio": "^1.0.0",
+    "parse-bearer-token": "^1.0.1",
     "tslib": "^2.0.0"
   },
   "devDependencies": {

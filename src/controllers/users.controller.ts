@@ -1,29 +1,18 @@
-import {
-  Count,
-  CountSchema,
-  Filter,
-  FilterExcludingWhere,
-  repository,
-  Where,
-} from '@loopback/repository';
-import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-  response,
-} from '@loopback/rest';
+import {authenticate} from '@loopback/authentication';
+import {service} from '@loopback/core';
+import {Count, CountSchema, Filter, FilterExcludingWhere, repository, Where} from '@loopback/repository';
+import {del, get, getModelSchemaRef, param, patch, post, put, requestBody, response} from '@loopback/rest';
 import {User} from '../models';
+import {Credentials} from '../models/credentials.model';
 import {UserRepository} from '../repositories';
+import {SessionService} from '../services/session.service';
 
 export class UsersController {
   constructor(
     @repository(UserRepository)
-    public userRepository : UserRepository,
+    public userRepository: UserRepository,
+    @service(SessionService)
+    public sessionService: SessionService
   ) {}
 
   @post('/users')
@@ -47,6 +36,7 @@ export class UsersController {
     return this.userRepository.create(user);
   }
 
+  @authenticate('jwt')
   @get('/users/count')
   @response(200, {
     description: 'User model count',
@@ -147,4 +137,36 @@ export class UsersController {
   async deleteById(@param.path.number('id') id: number): Promise<void> {
     await this.userRepository.deleteById(id);
   }
+
+  /*Login*/
+
+  @post('/login')
+  @response(200, {
+    description: 'User login',
+    content: {'application/json': {schema: Credentials}},
+  })
+  async login(
+    @requestBody({
+      content: {
+        'application/json': {
+          schema: getModelSchemaRef(Credentials, {partial: true}),
+        },
+      },
+    })
+    credentials: Credentials
+  ): Promise<object | null> {
+    let user = await this.userRepository.findOne({
+      where: {
+        email: credentials.email,
+        password: credentials.password
+      }
+    });
+    let token = await this.sessionService.generateToken();
+
+    return {
+      "user": user,
+      "token": token
+    };
+  }
+
 }

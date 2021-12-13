@@ -161,7 +161,7 @@ export class UsersController {
         password: credentials.password
       }
     });
-    let token = await this.sessionService.generateToken();
+    let token = await this.sessionService.generateToken(user.username);
 
     return {
       "user": user,

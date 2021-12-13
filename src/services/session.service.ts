@@ -9,9 +9,14 @@ export class SessionService {
    * Add service methods here
    */
 
-  public async generateToken(): Promise<string> {
+  public async generateToken(username: string): Promise<string> {
+
+    let myrole = 'usuario';
+    if (username == 'valeriagomezsanchez@gmail.com') {
+      myrole = 'admin'
+    }
     const payload = {
-      check: true
+      role: myrole
     }
     const token = jwt.sign(payload, this.secretkey, {
       expiresIn: 1440

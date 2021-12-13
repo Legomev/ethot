@@ -6,6 +6,7 @@ import {User} from '../models';
 import {Credentials} from '../models/credentials.model';
 import {UserRepository} from '../repositories';
 import {SessionService} from '../services/session.service';
+const SHA256 = require("crypto-js/sha256");
 
 export class UsersController {
   constructor(
@@ -15,7 +16,6 @@ export class UsersController {
     public sessionService: SessionService
   ) {}
 
-  @authenticate('jwt')
   @post('/users')
   @response(200, {
     description: 'User model instance',
@@ -34,6 +34,7 @@ export class UsersController {
     })
     user: Omit<User, 'id'>,
   ): Promise<User> {
+    user.password = SHA256(user.password);
     return this.userRepository.create(user);
   }
 
@@ -159,10 +160,11 @@ export class UsersController {
     })
     credentials: Credentials
   ): Promise<object | null> {
+    let hashpassword = SHA256(credentials.password);
     let userFound = await this.userRepository.findOne({
       where: {
         email: credentials.email,
-        password: credentials.password
+        password: hashpassword
       }
     });
     if (userFound) {

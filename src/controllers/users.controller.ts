@@ -15,6 +15,7 @@ export class UsersController {
     public sessionService: SessionService
   ) {}
 
+  @authenticate('jwt')
   @post('/users')
   @response(200, {
     description: 'User model instance',
@@ -48,6 +49,7 @@ export class UsersController {
     return this.userRepository.count(where);
   }
 
+  @authenticate('jwt')
   @get('/users')
   @response(200, {
     description: 'Array of User model instances',
@@ -66,6 +68,7 @@ export class UsersController {
     return this.userRepository.find(filter);
   }
 
+  @authenticate('jwt')
   @patch('/users')
   @response(200, {
     description: 'User PATCH success count',
@@ -85,6 +88,7 @@ export class UsersController {
     return this.userRepository.updateAll(user, where);
   }
 
+  @authenticate('jwt')
   @get('/users/{id}')
   @response(200, {
     description: 'User model instance',
@@ -100,7 +104,7 @@ export class UsersController {
   ): Promise<User> {
     return this.userRepository.findById(id, filter);
   }
-
+  @authenticate('jwt')
   @patch('/users/{id}')
   @response(204, {
     description: 'User PATCH success',
@@ -118,7 +122,7 @@ export class UsersController {
   ): Promise<void> {
     await this.userRepository.updateById(id, user);
   }
-
+  @authenticate('jwt')
   @put('/users/{id}')
   @response(204, {
     description: 'User PUT success',

@@ -9,10 +9,10 @@ export class SessionService {
    * Add service methods here
    */
 
-  public async generateToken(username: string): Promise<string> {
+  public async generateToken(email?: string): Promise<string> {
 
     let myrole = 'usuario';
-    if (username == 'valeriagomezsanchez@gmail.com') {
+    if (email == 'valeriagomezsanchez@gmail.com') {
       myrole = 'admin'
     }
     const payload = {

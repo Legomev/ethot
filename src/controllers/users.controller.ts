@@ -155,17 +155,22 @@ export class UsersController {
     })
     credentials: Credentials
   ): Promise<object | null> {
-    let user = await this.userRepository.findOne({
+    let userFound = await this.userRepository.findOne({
       where: {
         email: credentials.email,
         password: credentials.password
       }
     });
-    let token = await this.sessionService.generateToken(user.username);
-
+    if (userFound) {
+      let token = await this.sessionService.generateToken(userFound!.email);
+      return {
+        "username": userFound!.username,
+        "token": token
+      };
+    }
     return {
-      "user": user,
-      "token": token
+      "username": null,
+      "token": null
     };
   }
 
